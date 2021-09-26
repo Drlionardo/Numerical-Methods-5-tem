@@ -36,11 +36,7 @@ public class CoordinateDescent {
             printResult(xCurrent);
             step = (step >= a.getRowDimension() - 1) ? 0 : step + 1;
 
-        } while (Math.sqrt((xCurrent.minus(xPrev).norm2())) > EPS);
-    }
-
-    private double getDistance(Matrix xPrev, Matrix xCurrent) {
-        return Math.sqrt((xCurrent.minus(xPrev).norm2()));
+        } while (getDistance(xPrev, xCurrent) > EPS);
     }
 
     private Matrix getNextX(Matrix xPrev, int step) {
@@ -55,6 +51,9 @@ public class CoordinateDescent {
         Matrix qI = new Matrix(a.getRowDimension(), 1);
         qI.set(i, 0, 1);
         return qI;
+    }
+    private double getDistance(Matrix xPrev, Matrix xCurrent) {
+        return Math.sqrt((xCurrent.minus(xPrev).norm2()));
     }
 
     private void printResult(Matrix x) {
