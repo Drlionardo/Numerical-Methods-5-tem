@@ -21,14 +21,17 @@ public class InterpolationExample {
         var optimalPoly = InterpolationPoly.build(optimalNodes, optimalNodesValues);
 
         double[] x = getEqualNodes(LEFT, RIGHT, M);
+
+        System.out.printf("%10s %12s %12s %12s %12s %12s\n",
+                "x","equalP","optimalP","f(x)","equalDelta","optimalDelta");
         for(double t : x) {
             double equalPolyVal = equalPoly.apply(t);
             double optimalPolyVal = optimalPoly.apply(t);
             double functionVal = F.apply(t);
             double equalDifference = Math.abs(functionVal - equalPolyVal);
             double optimalDifference = Math.abs(functionVal - optimalPolyVal);
-            System.out.printf("x = %.8f  ->  P:=%.8f f:=%.8f equalDifference: %.8f OptimalDifference: %.8f\n",
-                    t, equalPolyVal, functionVal, equalDifference, optimalDifference);
+            System.out.printf("%10.6f %12.6f %12.6f %12.6f %12.6f %12.6f\n",
+                    t, equalPolyVal,optimalPolyVal, functionVal, equalDifference, optimalDifference);
         }
     }
 

@@ -30,6 +30,7 @@ public class CoordinateDescent {
         Matrix xCurrent = new Matrix(a.getRowDimension(), 1);
         Matrix xPrev;
         int step = 0;
+        System.out.printf("%8s %12s %12s %12s\n","x","y","z","f(z,y,z)");
         do {
             xPrev = xCurrent.copy();
             xCurrent = getNextX(xPrev, step);
@@ -59,12 +60,7 @@ public class CoordinateDescent {
     private void printResult(Matrix x) {
         double result = function(x);
         var array = x.getArray();
-        StringBuilder xString = new StringBuilder();
-        for (double[] doubles : array) {
-            xString.append(doubles[0]).append(" ");
-        }
-        xString.append("-> ").append(result);
-        System.out.println(xString);
+        System.out.printf("%8.8f %12.8f %12.8f %12.8f\n",array[0][0], array[1][0], array[2][0], result);
     }
 
     private void checkDimensions() {
